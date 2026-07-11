@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { DM_Sans, Gilda_Display } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
@@ -13,10 +13,17 @@ export const metadata: Metadata = {
   description: "Sistema de Gestão de Catequese",
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   display: "swap",
   subsets: ["latin"],
+});
+
+const gildaDisplay = Gilda_Display({
+  variable: "--font-gilda-display",
+  display: "swap",
+  subsets: ["latin"],
+  weight: "400"
 });
 
 export default function RootLayout({
@@ -26,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
+      <body className={`${dmSans.variable} ${gildaDisplay.variable} ${dmSans.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
