@@ -32,8 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${gildaDisplay.variable} ${dmSans.className} antialiased`}>
+    <html lang="pt-BR"
+          className={`${dmSans.variable} ${gildaDisplay.variable}`} 
+          suppressHydrationWarning>
+      <body className={`${dmSans.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

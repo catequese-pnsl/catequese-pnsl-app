@@ -49,13 +49,17 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
-            Digite seu e-mail abaixo para entrar na sua conta.
-          </CardDescription>
-        </CardHeader>
+
+      <div className="flex flex-col gap-6 text-center">
+        <h1 className="font-display text-5xl font-normal tracking-tight text-foreground">
+          Seja bem-vindo!
+        </h1>
+        <p className="text-sm text-muted-foreground max-w-[280px] mx-auto">
+          App da catequese da Paróquia Nossa Senhora de Lourdes
+        </p>
+      </div>
+      <Card className="border-border border-3 border-b-10 rounded-4xl">
+        <CardHeader></CardHeader>
         <CardContent>
           <form onSubmit={handleLogin}>
             <div className="flex flex-col gap-6">
@@ -64,20 +68,21 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="email@exemplo.com"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="border-border"
                 />
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">Senha</Label>
                   <Link
                     href="/auth/forgot-password"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
-                    Forgot your password?
+                    Esqueceu sua senha?
                   </Link>
                 </div>
                 <Input
@@ -86,10 +91,11 @@ export function LoginForm({
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="border-border"
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" variant={"outline"} className="w-full border-border" disabled={isLoading} size={"lg"}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>

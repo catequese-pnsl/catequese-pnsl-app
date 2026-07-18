@@ -8,6 +8,18 @@
   --color-foreground: var(--foreground);
   --color-border: var(--border);
   --color-accent: var(--accent);
+
+  --color-primary: var(--background);             
+  --color-primary-foreground: var(--foreground);
+  
+  --color-muted: var(--accent);
+  --color-muted-foreground: var(--foreground);
+  
+  --color-input: var(--foreground);
+  --color-ring: var(--accent);
+
+  --color-card: var(--background);
+  --color-card-foreground: var(--foreground);
 }
 
 :root {
@@ -31,6 +43,7 @@
 
   html, body{
     background-color: var(--background);
+    font-family: var(--font-sans);
     height: 100dvh;
   }
 }

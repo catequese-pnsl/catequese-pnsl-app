@@ -24,19 +24,26 @@ export function UpdatePasswordForm({
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleForgotPassword = async (e: React.FormEvent) => {
+  const handleUpdatePassword = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const supabase = createClient();
+
     setIsLoading(true);
     setError(null);
 
     try {
-      const { error } = await supabase.auth.updateUser({ password });
+      const { error } = await supabase.auth.updateUser({
+        password,
+      });
+
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
+
       router.push("/protected");
     } catch (error: unknown) {
-      setError(error instanceof Error ? error.message : "An error occurred");
+      setError(
+        error instanceof Error ? error.message : "Ocorreu um erro."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -44,30 +51,52 @@ export function UpdatePasswordForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card className="border-border border-3 border-b-10 rounded-4xl">
         <CardHeader>
-          <CardTitle className="text-2xl">Reset Your Password</CardTitle>
+          <CardTitle className="text-2xl">
+            Redefinir senha
+          </CardTitle>
+
           <CardDescription>
-            Please enter your new password below.
+            Digite sua nova senha para concluir a redefinição.
           </CardDescription>
         </CardHeader>
+
         <CardContent>
-          <form onSubmit={handleForgotPassword}>
+          <form onSubmit={handleUpdatePassword}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="password">New password</Label>
+                <Label htmlFor="password">
+                  Nova senha
+                </Label>
+
                 <Input
                   id="password"
                   type="password"
-                  placeholder="New password"
+                  placeholder="Digite sua nova senha"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="border-border"
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Saving..." : "Save new password"}
+
+              {error && (
+                <p className="text-sm text-red-500">
+                  {error}
+                </p>
+              )}
+
+              <Button
+                type="submit"
+                variant="outline"
+                size="lg"
+                className="w-full border-border"
+                disabled={isLoading}
+              >
+                {isLoading
+                  ? "Salvando..."
+                  : "Salvar nova senha"}
               </Button>
             </div>
           </form>

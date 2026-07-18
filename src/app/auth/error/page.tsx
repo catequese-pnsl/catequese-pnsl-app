@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/src/components/ui/card";
 import { Suspense } from "react";
 
 async function ErrorContent({
@@ -12,11 +18,11 @@ async function ErrorContent({
     <>
       {params?.error ? (
         <p className="text-sm text-muted-foreground">
-          Code error: {params.error}
+          Erro: {params.error}
         </p>
       ) : (
         <p className="text-sm text-muted-foreground">
-          An unspecified error occurred.
+          Ocorreu um erro inesperado.
         </p>
       )}
     </>
@@ -31,20 +37,23 @@ export default function Page({
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
-        <div className="flex flex-col gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">
-                Sorry, something went wrong.
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Suspense>
-                <ErrorContent searchParams={searchParams} />
-              </Suspense>
-            </CardContent>
-          </Card>
-        </div>
+        <Card className="border-border border-3 border-b-10 rounded-4xl">
+          <CardHeader>
+            <CardTitle className="text-2xl">
+              Ops! Algo deu errado.
+            </CardTitle>
+
+            <CardDescription>
+              Não foi possível concluir a operação de autenticação.
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent>
+            <Suspense>
+              <ErrorContent searchParams={searchParams} />
+            </Suspense>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
