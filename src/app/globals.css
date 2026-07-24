@@ -20,6 +20,9 @@
 
   --color-card: var(--background);
   --color-card-foreground: var(--foreground);
+
+  --color-popover: var(--background);
+  --color-popover-foreground: var(--foreground);
 }
 
 :root {
